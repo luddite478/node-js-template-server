@@ -1,6 +1,5 @@
 function convertObjectToSqlQueryString(typeOfString, obj){
   try {
-
     switch(typeOfString){
       case '=':
           return Object.keys(obj).reduce((acc, key, i, arr) => {
@@ -27,11 +26,11 @@ function convertObjectToSqlQueryString(typeOfString, obj){
               }, '');
 
       default:
-          throw new Error('Error in ./convertObjectToSqlQueryString.js');
+          throw new Error('This type of splitter does not exist');
     }
 
   } catch(err){
-    console.log('Error in ./convertObjectToSqlQueryString.js ' + err);
+    console.log(err);
   }
 }
 

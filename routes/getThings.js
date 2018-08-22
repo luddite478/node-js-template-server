@@ -2,8 +2,8 @@ const DB = require('../db');
 
 async function getThings(req, res) {
   try {
-    const query = req.query;
-    const result = await DB.read('things', query);
+
+    const result = await DB.getThings(req.query);
 
     result
       ? res.send(result)

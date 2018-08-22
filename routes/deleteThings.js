@@ -1,9 +1,10 @@
 const DB = require('../db');
 
-async function deleteThing(req, res) {
+async function deleteThings(req, res) {
   try {
+    
     const query = req.query;
-    const result = await DB.delete('things', query);
+    const result = await DB.deleteThings(query);
 
     result.hasError
       ? res.send(result.err)
@@ -14,4 +15,4 @@ async function deleteThing(req, res) {
   }
 };
 
-module.exports = deleteThing;
+module.exports = deleteThings;

@@ -1,0 +1,20 @@
+html
+  head
+    title Log in
+  body
+    h1 Enter name and password
+    a(href='/') main 
+    a(href='protected') protected 
+  
+    form(method="POST" action="/login")
+      div
+        label(for="title") Name:
+        input#title.form-control(type="text", name="name")
+        br
+        br
+        label(for="author") Password:
+        input#author.form-control(type="text", name="password")
+        br
+        br 
+        div.form-group
+          button.btn.btn-primary(type="submit" role="submit") Log in

@@ -1,26 +1,34 @@
 const { Pool } = require('pg');
-const readRecords = require('./readRecords');
-const createRecord = require('./createRecord');
-const deleteRecords = require('./deleteRecords');
-const updateRecords = require('./updateRecords');
+const getThings = require('./getThings');
+const createThing = require('./createThing');
+const checkUserCredentials = require('./checkUserCredentials');
+const deleteThings = require('./deleteThings');
+const updateThing = require('./updateThing');
 const convertObjectToSqlQueryString = require('./convertObjectToSqlQueryString');
+const findUserById = require('./findUserById')
 
 class DataBaseInterface {
   constructor(credentials){
     this.pool = new Pool(credentials);
-    this.pool.on('error', () => console.log('Error in db/index.js: ' + err));
+    this.pool.on('error', () => console.log(err));
   }
-  create(table, params){
-    return createRecord.bind(this)(table, params);
+  checkUserCredentials(params) {
+    return checkUserCredentials.call(this, params);
   }
-  read(table, params){
-    return readRecords.bind(this)(table, params);
+  findUserById(params) {
+    return findUserById.call(this, params);
   }
-  update(table, params){
-    return updateRecords.bind(this)(table, params);
+  getThings(params){
+    return getThings.call(this, params);
   }
-  delete(table, params){
-    return deleteRecords.bind(this)(table, params);
+  createThing(params){
+    return createThing.call(this, params);
+  }
+  updateThing(params){
+    return updateThing.call(this, params);
+  }
+  deleteThings(params){
+    return deleteThings.call(this, params);
   }
   convertObjectToSqlQueryString(typeOfString, obj){
     return convertObjectToSqlQueryString(typeOfString, obj)

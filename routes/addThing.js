@@ -2,8 +2,9 @@ const DB = require('../db');
 
 async function addThing(req, res) {
   try {
+    
     const body = req.body;
-    const result = await DB.create('things', body);
+    const result = await DB.createThing(body);
 
     result.hasError
       ? res.send(result.err)
