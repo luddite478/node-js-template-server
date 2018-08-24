@@ -1,0 +1,10 @@
+sudo: required
+
+postgres:
+  adapter: postgresql
+  database: travis_ci_test
+  username: postgres
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c "CREATE USER postgres;" -U postgres
