@@ -20,7 +20,7 @@ describe('Things', () => {
               done();
             });
       });
-  });
+  }) ;
 
   describe('/POST thing', () => {
       it('it should POST one thing', (done) => {
