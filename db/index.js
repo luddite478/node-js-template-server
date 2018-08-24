@@ -1,15 +1,16 @@
-const { Pool } = require('pg');
-const getThings = require('./getThings');
-const createThing = require('./createThing');
-const checkUserCredentials = require('./checkUserCredentials');
-const deleteThings = require('./deleteThings');
-const updateThing = require('./updateThing');
-const convertObjectToSqlQueryString = require('./convertObjectToSqlQueryString');
-const findUserById = require('./findUserById')
+const { Pool }                        =         require('pg');
+const getThings                       =         require('./getThings');
+const createThing                     =         require('./createThing');
+const checkUserCredentials            =         require('./checkUserCredentials');
+const deleteThings                    =         require('./deleteThings');
+const updateThing                     =         require('./updateThing');
+const convertObjectToSqlQueryString   =         require('./convertObjectToSqlQueryString');
+const findUserById                    =         require('./findUserById');
+const postgreUrl                      =         require('../config/keys').postgreUrl;
 
 class DataBaseInterface {
-  constructor(credentials){
-    this.pool = new Pool(credentials);
+  constructor(connectUrl){
+    this.pool = new Pool(connectUrl);
     this.pool.on('error', () => console.log(err));
   }
   checkUserCredentials(params) {
@@ -35,14 +36,6 @@ class DataBaseInterface {
   }
 }
 
-const credentials = {
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
-};
-
-const DB = new DataBaseInterface(credentials);
+const DB = new DataBaseInterface(postgreUrl);
 
 module.exports = DB;

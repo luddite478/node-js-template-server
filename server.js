@@ -10,6 +10,7 @@ const pug                   =         require('pug');
 const passport              =         require('passport');
                                       require('dotenv').config();
 
+const keys                  =         require('./config/keys/');
 const rateLimiterMidlware   =         require('./rateLimiterMidlware');
 const router                =         require('./routes');
 const passportSetup         =         require('./config/passport');
@@ -60,3 +61,5 @@ function errorHandler(err, req, res) {
 }
 
 app.listen(PORT, () => console.log('Listening on port ' + PORT))
+
+module.exports = app

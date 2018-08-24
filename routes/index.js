@@ -24,12 +24,12 @@ router.post('/login',
     delete req.session.returnTo;
 });
 
-router.get('/favicon.ico', (req, res) => res.status(204));
 router.get('/things', getThings);
+router.get('/things/:id', getThings);
 router.post('/things', addThing);
-router.delete('/things', deleteThings);
-router.put('/things', updateThing);
-
+router.delete('/things/:id', deleteThings);
+router.put('/things/:id', updateThing);
+router.get('/favicon.ico', (req, res) => res.status(204));
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
      return next();

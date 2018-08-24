@@ -2,18 +2,22 @@ const DB = require('../db');
 
 async function updateThing(req, res) {
   try {
-    const params = {
-      values: req.body[0],
-      id: req.body[1].id,
+
+    if(req.params.id && req.body){
+      const params = {
+        values: req.body,
+        id: req.params.id
+      }
+      const result = await DB.updateThing(params);
+      result.hasError
+        ? res.send('Can not update thing')
+        : res.status(200).end();
+    } else {
+      res.status(400).send('You need to specify id');
     }
 
-    const result = await DB.updateThing(params);
-
-    result.hasError
-      ? res.send(result.err)
-      : res.status(200).end();
-
   } catch(err) {
+      res.status(500).end()
       console.log(err);
   }
 };

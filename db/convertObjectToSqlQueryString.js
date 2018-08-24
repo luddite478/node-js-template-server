@@ -3,12 +3,15 @@ function convertObjectToSqlQueryString(typeOfString, obj){
     switch(typeOfString){
       case '=':
           return Object.keys(obj).reduce((acc, key, i, arr) => {
+              const value = typeof obj[key] === 'number'
+                ? obj[key]
+                : `'${obj[key]}'`
               if(arr.length === 1) {
-                return `${key}='${obj[key]}'`;
+                return `${key}=${value}`;
               }
               return i !== arr.length-1
-                        ? `${acc}${key}='${obj[key]}' AND `
-                        : `${acc}${key}='${obj[key]}' `
+                        ? `${acc}${key}=${value} AND `
+                        : `${acc}${key}=${value} `
             }, '');
 
       case '$':

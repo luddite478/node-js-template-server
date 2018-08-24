@@ -1,8 +1,8 @@
-async function getThings(params) {
+async function getThings(id) {
   try {
-    if(!isEmpty(params)){
-      const result = await this.pool.query(`SELECT * FROM things WHERE id=${params.id}`);
-      return result.rows;
+    if(id){
+      const result = await this.pool.query(`SELECT * FROM things WHERE id=${id}`);
+      return result.rows[0];
     } else {
       const result = await this.pool.query(`SELECT * FROM things`);
       return result.rows;
@@ -12,14 +12,6 @@ async function getThings(params) {
       console.log(err);
       return null
   }
-}
-
-function isEmpty(obj) {
-  for(let key in obj) {
-    if(obj.hasOwnProperty(key))
-        return false;
-  }
-  return true;
 }
 
 module.exports = getThings;

@@ -1,8 +1,8 @@
-async function deleteThings(params, table) {
+async function deleteThings(id, table) {
 
  try {
-   const queryStr = this.convertObjectToSqlQueryString('=', params);
-   await this.pool.query(`DELETE FROM things WHERE ${queryStr}`);
+   console.log(`DELETE FROM things WHERE id=${id}`);
+   await this.pool.query(`DELETE FROM things WHERE id=${id}`);
    return {
      hasError: false
    }
