@@ -2,7 +2,7 @@ const DB = require('../db');
 
 async function getThings(req, res) {
   try {
-    
+
     const result = req.params.id
       ? await DB.getThings(req.params.id)
       : await DB.getThings()

@@ -55,9 +55,9 @@ app.use(passport.session());
 app.use(router);
 app.use(errorHandler);
 
-function errorHandler(err, req, res) {
+function errorHandler(err, req, res, next) {
   console.log("ERROR: "+ err.toString());
-  res.status(404);
+  // res.status(404).send('Not found');
 }
 
 app.listen(PORT, () => console.log('Listening on port ' + PORT))

@@ -30,6 +30,7 @@ router.post('/things', addThing);
 router.delete('/things/:id', deleteThings);
 router.put('/things/:id', updateThing);
 router.get('/favicon.ico', (req, res) => res.status(204));
+
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
      return next();

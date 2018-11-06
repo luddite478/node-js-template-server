@@ -1,8 +1,7 @@
 const DB = require('../db');
 
-async function deleteThings(req, res) {
+async function deleteThings(req, res, next) {
   try {
-
      if(!req.params.id) {
        res.status(400).send('You need to specify id');
      } else {
