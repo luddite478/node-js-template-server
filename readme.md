@@ -3,5 +3,6 @@ Template node js server with:
 - Ratelimiter
 - Rest API
 - Postgres DB handler
+- Travis config
 
 Type *npm start* in console to run the server
